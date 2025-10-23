@@ -1,52 +1,42 @@
-import { configDefaults, defineConfig } from 'vitest/config'
-import { entries } from './scripts/aliases.js'
+import { resolve } from 'node:path';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  define: {
-    __DEV__: true,
-    __TEST__: true,
-  },
-  resolve: {
-    alias: entries,
-  },
   test: {
     globals: true,
-    pool: 'threads',
-    setupFiles: 'scripts/setup-vitest.ts',
-    sequence: {
-      hooks: 'list',
+    environment: 'node',
+    setupFiles: ['./test/setup.ts'],
+    deps: {
+      external: ['winston-daily-rotate-file'],
     },
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'html'],
-      include: ['packages/*/src/**'],
-      exclude: [],
+      reporter: ['text', 'json', 'html'],
+      include: ['src/**/*.{ts,js}'],
+      exclude: [
+        'src/**/*.spec.ts',
+        'src/**/*.test.ts',
+        'src/**/*.d.ts',
+        'src/main.ts',
+        'src/**/*.interface.ts',
+        'src/**/*.dto.ts',
+      ],
+      thresholds: {
+        global: {
+          branches: 80,
+          functions: 80,
+          lines: 80,
+          statements: 80,
+        },
+      },
     },
-    projects: [
-      {
-        extends: true,
-        test: {
-          name: 'unit',
-          exclude: [...configDefaults.exclude, '**/e2e/**'],
-        },
-      },
-      {
-        extends: true,
-        test: {
-          name: 'unit-jsdom',
-          include: ['packages/*/*.{test,spec}.*'],
-          exclude: [...configDefaults.exclude, '**/e2e/**'],
-          environment: 'jsdom',
-        },
-      },
-      {
-        extends: true,
-        test: {
-          name: 'e2e',
-          environment: 'jsdom',
-          include: ['packages/*/__tests__/e2e/*.spec.ts'],
-        },
-      },
-    ],
+    testTimeout: 30000,
+    hookTimeout: 30000,
   },
-})
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+      '@test': resolve(__dirname, 'test'),
+    },
+  },
+});

@@ -1,40 +1,21 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "temp",
-    "sourceMap": false,
-    "target": "es2016",
-    "newLine": "LF",
-    "useDefineForClassFields": false,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "allowJs": false,
-    "strict": true,
-    "noUnusedLocals": true,
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "removeComments": false,
-    "jsx": "preserve",
-    "lib": ["es2016", "dom"],
-    "types": ["vitest/globals", "node"],
-    "rootDir": ".",
-    "paths": {
-      "@zeus-js/*": ["packages/*/src"]
-    },
-    "isolatedDeclarations": true,
-    "composite": true,
-    "emitDecoratorMetadata": true
-  },
-  "include": [
-    "packages/global.d.ts",
-    "packages/*/src",
-    "packages/*/__tests__",
-    "packages/zeus/jsx-runtime",
-    "playground/benchmarks",
-    "scripts/*",
-    "rollup.*.js"
-  ]
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false
+  }
 }

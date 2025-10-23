@@ -5,8 +5,20 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "stripInternal": true,
-    "composite": false
+    "composite": false,
+    "outDir": "dist",
+    "removeComments": true,
+    "sourceMap": true
   },
-  "include": ["packages/*/src", "packages/compiler/src/type.d.ts"],
-  "exclude": ["**/__tests__", "**/dist", "**/playground"]
+  "include": [
+    "packages/*/src"
+  ],
+  "exclude": [
+    "**/__tests__",
+    "**/dist",
+    "**/temp",
+    "**/playground",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ]
 }

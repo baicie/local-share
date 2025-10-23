@@ -3,38 +3,54 @@
     "baseUrl": ".",
     "outDir": "temp",
     "sourceMap": false,
-    "target": "es2016",
-    "newLine": "LF",
-    "useDefineForClassFields": false,
-    "module": "esnext",
+    "target": "ES2020",
+    "module": "ESNext",
     "moduleResolution": "bundler",
     "allowJs": false,
     "strict": true,
     "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "exactOptionalPropertyTypes": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
     "removeComments": false,
     "jsx": "preserve",
-    "lib": ["es2016", "dom"],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "types": ["vitest/globals", "node"],
     "rootDir": ".",
     "paths": {
-      "@zeus-js/*": ["packages/*/src"]
+      "@shared/*": ["packages/shared/src/*"],
+      "@web/*": ["packages/web/src/*"],
+      "@mobile/*": ["packages/mobile/src/*"],
+      "@desktop/*": ["packages/desktop/src/*"],
+      "@mini/*": ["packages/mini/src/*"]
     },
     "isolatedDeclarations": true,
     "composite": true,
-    "emitDecoratorMetadata": true
+    "declaration": true,
+    "declarationMap": true
   },
   "include": [
-    "packages/global.d.ts",
     "packages/*/src",
     "packages/*/__tests__",
-    "packages/zeus/jsx-runtime",
-    "playground/benchmarks",
     "scripts/*",
-    "rollup.*.js"
+    "*.ts",
+    "*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "temp",
+    "**/*.spec.ts",
+    "**/*.test.ts"
   ]
 }
